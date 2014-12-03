@@ -1,13 +1,10 @@
 [package]
-name = "openrl"
+name = "ncrs"
 version = "0.0.1"
 authors = [
     "Graham Cox <graham@grahamcox.co.uk>"
 ] 
-description = "Open World, Sandbox Roguelike Game"
-repository = "https://github.com/sazzer/openrl"
-readme = "README.md"
-license = "BSD-3-Clause"
+description = "Rust wrapper around the NCurses library"
 
 [features]
 
@@ -41,9 +38,12 @@ debug = true
 rpath = false
 lto = false
 
-[[bin]]
-name = "openrl"
-path = "src/bin.rs"
+[lib]
+name = "ncrs"
+path = "src/lib.rs"
+test = true
+doctest = true
+bench = true
+doc = true
+plugin = false
 
-[dependencies.openrl_ui]
-path = "libs/openrl_ui"
