@@ -47,3 +47,6 @@ bench = true
 doc = true
 plugin = false
 
+[dependencies.ncurses]
+git = "https://github.com/jeaye/ncurses-rs"
+

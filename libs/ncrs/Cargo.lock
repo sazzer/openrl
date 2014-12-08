@@ -1,11 +1,4 @@
 [root]
-name = "openrl"
-version = "0.0.1"
-dependencies = [
- "openrl_ui 0.0.1",
-]
-
-[[package]]
 name = "ncrs"
 version = "0.0.1"
 dependencies = [
@@ -16,11 +9,4 @@ dependencies = [
 name = "ncurses"
 version = "5.71.1"
 source = "git+https://github.com/jeaye/ncurses-rs#a60bd9ed173725ea81aed93ba904812cde0e042f"
-
-[[package]]
-name = "openrl_ui"
-version = "0.0.1"
-dependencies = [
- "ncrs 0.0.1",
-]
 

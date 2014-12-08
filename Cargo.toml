@@ -47,3 +47,9 @@ path = "src/bin.rs"
 
 [dependencies.openrl_ui]
 path = "libs/openrl_ui"
+test = true
+
+[[example]]
+name = "ncrs_options"
+path = "examples/ncrs_options.rs"
+
