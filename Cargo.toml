@@ -53,3 +53,7 @@ test = true
 name = "ncrs_options"
 path = "examples/ncrs_options.rs"
 
+[[example]]
+name = "ncrs_window_blank"
+path = "examples/ncrs_window_blank.rs"
+
