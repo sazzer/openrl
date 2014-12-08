@@ -97,10 +97,20 @@ impl NCRS {
         NCRS
     }
 
-    // Create a new window and cause it to be displayed
-    // # Parameters:
-    // * name The internal name of the window
-    // * opts The options to use for creating the window
+    /// Get the width of the NCRS UI
+    pub fn width(self: &NCRS) -> u16 {
+        ncurses::COLS as u16
+    }
+
+    /// Get the height of the NCRS UI
+    pub fn height(self: &NCRS) -> u16 {
+        ncurses::LINES as u16
+    }
+
+    /// Create a new window and cause it to be displayed
+    /// # Parameters:
+    /// * name The internal name of the window
+    /// * opts The options to use for creating the window
     pub fn new_window<'a>(self: &mut NCRS, name: &'a str, opts: window::WindowOptions) -> window::Window {
         info!("Creating new window called {}", name);
         window::Window

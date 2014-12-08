@@ -50,6 +50,10 @@ path = "libs/openrl_ui"
 test = true
 
 [[example]]
+name = "ncrs_size"
+path = "examples/ncrs_size.rs"
+
+[[example]]
 name = "ncrs_options"
 path = "examples/ncrs_options.rs"
 
