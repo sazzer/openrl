@@ -121,9 +121,7 @@ impl NCRS {
     /// # Returns The new window
     pub fn new_window<'a>(self: &mut NCRS, name: &'a str, opts: window::WindowOptions) -> Option<&mut window::Window> {
         info!("Creating new window called {}", name);
-        self.windows.insert(name.to_string(), window::Window {
-                            options: opts
-                            });
+        self.windows.insert(name.to_string(), window::Window::new(opts));
         self.windows.get_mut(&name.to_string())
     }
 

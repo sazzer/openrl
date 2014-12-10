@@ -2,6 +2,7 @@
 #[phase(plugin, link)] extern crate log;
 
 extern crate ncrs;
+extern crate ncurses;
 
 fn main() {
     let mut ncrs = ncrs::NCRS::new();
@@ -13,4 +14,5 @@ fn main() {
     }
 
     ncrs.render();
+    ncurses::getch();
 }
