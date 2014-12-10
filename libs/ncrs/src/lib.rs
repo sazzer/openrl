@@ -152,4 +152,14 @@ impl NCRS {
         }
         names
     }
+
+    /// Cause the UI to be rendered to the screen
+    pub fn render(self: &NCRS) {
+        debug!("Rendering the UI");
+        ncurses::clear();
+        for window in self.windows.values() {
+            window.render();
+        }
+        ncurses::doupdate();
+    }
 }

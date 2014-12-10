@@ -26,3 +26,9 @@ impl Drop for Window {
         info!("Destroying window");
     }
 }
+
+impl Window {
+    /// Cause the Window to be rendered to the screen
+    pub fn render(self: &Window) {
+    }
+}

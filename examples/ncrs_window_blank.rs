@@ -11,4 +11,6 @@ fn main() {
     for name in window_names.iter() {
         info!("Window named {} exists", name);
     }
+
+    ncrs.render();
 }
