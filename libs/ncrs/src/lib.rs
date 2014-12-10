@@ -2,11 +2,15 @@
 #[phase(plugin, link)] extern crate log;
 
 extern crate ncurses;
+use std::collections::TreeMap;
+use std::collections::TreeSet;
 
 pub mod window;
 
 #[experimental]
-pub struct NCRS;
+pub struct NCRS {
+    windows: TreeMap<String, window::Window>
+}
     
 #[experimental]
 pub enum CBreakMode {
@@ -28,6 +32,7 @@ impl Drop for NCRS {
     /// Destroy the NCRS system when it goes out of scope
     #[stable]
     fn drop(&mut self) {
+        self.windows.clear();
         info!("Destroying the NCRS system");
         ncurses::endwin();
     }
@@ -94,7 +99,9 @@ impl NCRS {
     pub fn new() -> NCRS {
         info!("Creating a new NCRS system");
         ncurses::initscr();
-        NCRS
+        NCRS {
+            windows: TreeMap::new()
+        }
     }
 
     /// Get the width of the NCRS UI
@@ -111,8 +118,38 @@ impl NCRS {
     /// # Parameters:
     /// * name The internal name of the window
     /// * opts The options to use for creating the window
-    pub fn new_window<'a>(self: &mut NCRS, name: &'a str, opts: window::WindowOptions) -> window::Window {
+    /// # Returns The new window
+    pub fn new_window<'a>(self: &mut NCRS, name: &'a str, opts: window::WindowOptions) -> Option<&mut window::Window> {
         info!("Creating new window called {}", name);
-        window::Window
+        self.windows.insert(name.to_string(), window::Window {
+                            options: opts
+                            });
+        self.windows.get_mut(&name.to_string())
+    }
+
+    /// Get a window with the given name
+    /// # Parameters:
+    /// * name The internal name of the window
+    /// # Returns the window, if it exists
+    pub fn get_window<'a>(self: &NCRS, name: &'a str) -> Option<&window::Window> {
+        self.windows.get(&name.to_string())
+    }
+
+    /// Get a window with the given name in a mutable manner
+    /// # Parameters:
+    /// * name The internal name of the window
+    /// # Returns the window, if it exists
+    pub fn get_mut_window<'a>(self: &mut NCRS, name: &'a str) -> Option<&mut window::Window> {
+        self.windows.get_mut(&name.to_string())
+    }
+
+    /// Get a list of all the window names that exist
+    /// # Returns the set of all window names
+    pub fn get_window_names<'a>(self: &'a NCRS) -> TreeSet<&'a String> {
+        let mut names = TreeSet::new();
+        for name in self.windows.keys() {
+            names.insert(name);
+        }
+        names
     }
 }

@@ -1,6 +1,3 @@
-/// Representation of a single Window in the NCRS UI
-pub struct Window;
-
 /// The options to be used to create a window
 #[deriving(Default, Show)]
 pub struct WindowOptions {
@@ -15,6 +12,12 @@ pub struct WindowOptions {
     /// The optional title of the window
     pub title: Option<String>
 }
+
+/// Representation of a single Window in the NCRS UI
+pub struct Window {
+    pub options: WindowOptions
+}
+
 
 impl Drop for Window {
     /// Destroy a particular window
